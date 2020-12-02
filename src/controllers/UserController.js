@@ -1,5 +1,4 @@
 const User = require('../data/models/User')
-const Game = require('../data/models/Game')
 const jwt = require('jsonwebtoken')
 class UserController {
 
