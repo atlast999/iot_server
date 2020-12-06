@@ -17,24 +17,34 @@ async function setup(){
 
     mqttClient.on('message', function(topic, payload){
         if(topic == sensorTopic){
-            const message = JSON.parse(payload.toString())
-            const sensor = new Sensor({
-                temperature: message.temperature,
-                humidity: message.humidity
-            })
-            sensor.save()
-            .then(sensor => {
-                console.log(sensor)
-            })
-            .catch(err => {
+            try{
+                const message = JSON.parse(payload.toString())
+                const sensor = new Sensor({
+                    temperature: message.temperature,
+                    humidity: message.humidity
+                })
+                sensor.save()
+                .then(sensor => {
+                    console.log(sensor)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            }
+            catch(err){
                 console.log(err)
-            })
+            }
+            
         }
     })
 }
 
 function sendCommand(request){
-    mqttClient.publish(deviceTopic, JSON.stringify(request))
+    var command = 'on'
+    if(request.command == '0'){
+        command = 'off'
+    }
+    mqttClient.publish(deviceTopic, command)
 }
 
 module.exports = {setup, sendCommand}
