@@ -23,6 +23,9 @@ async function setup(){
                     temperature: message.temperature,
                     humidity: message.humidity
                 })
+                if(sensor.humidity == '21'){
+                    return
+                }
                 sensor.save()
                 .then(sensor => {
                     console.log(sensor)
@@ -41,10 +44,13 @@ async function setup(){
 
 function sendCommand(request){
     var command = 'on'
+    var response = '1'
     if(request.command == '0'){
         command = 'off'
+        response = '0'
     }
     mqttClient.publish(deviceTopic, command)
+    return response
 }
 
 module.exports = {setup, sendCommand}
