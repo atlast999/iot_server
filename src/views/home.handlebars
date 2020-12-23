@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+ <html>
+  <head>
+    <meta http-equiv="refresh" content="3">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var passedData = "{{data}}"
+        var chartData = passedData.split(',')
+        var realData = [['Time', 'Temperature', 'Humidity']]
+        for(var i = 0; i<chartData.length; i+=3){
+          var row = []
+          row.push(chartData[i])
+          row.push(parseInt(chartData[i+1]))
+          row.push(parseInt(chartData[i+2]))
+          realData.push(row)
+        }
+        //console.log(realData)
+        var data = google.visualization.arrayToDataTable(realData);
+
+        var options = {
+          title: 'Temperatu and Humidity',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px;  display: flex; justify-content: center; align-items: center;"></div>
+  </body>
+</html>
+
