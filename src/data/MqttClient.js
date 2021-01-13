@@ -1,7 +1,7 @@
 const mqtt = require('mqtt')
 const Sensor = require('./models/Sensor')
-var mqttClient = mqttClient = mqtt.connect('mqtt://broker.emqx.io', {port: 1883})
-
+// var mqttClient = mqttClient = mqtt.connect('mqtt://broker.emqx.io', {port: 1883})
+var mqttClient = mqtt.connect('mqtt://localhost', {port: 1883})
 const sensorTopic = 'iot20201/group2/sensors'
 const deviceTopic = 'iot20201/group2/devices'
 
@@ -9,7 +9,7 @@ async function setup(){
     
     mqttClient.subscribe(sensorTopic, function(err){
         if(!err){
-            console.log('Mqtt client subscribed topics')
+            console.log('Mqtt client subscribed topics: ' + sensorTopic)
         } else {
             console.log('Mqtt error occurs')
         }
@@ -23,7 +23,7 @@ async function setup(){
                     temperature: message.temperature,
                     humidity: message.humidity
                 })
-                if(sensor.humidity == '21'){
+                if(sensor.humidity == '21' || sensor.humidity == '1.00'){
                     return
                 }
                 sensor.save()
