@@ -8,14 +8,14 @@ class UserController {
         User.findOne({username: username})
             .then(user => {
                 if(!user){
-                    res.json({error: 'User is not exist'})
+                    res.json({code: '404', message: 'User is not exist'})
                     return
                 } 
                 if(user.hashPassword === password){
                     const token = jwt.sign({username: user.username}, 'secret')
                     res.json({code : '200', token: token})
                 } else {
-                    res.json({error: 'Password is incorrect'})
+                    res.json({code: '400', message: 'Password is incorrect'})
                 }
             })
             .catch(next)
