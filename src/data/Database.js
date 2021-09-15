@@ -1,10 +1,14 @@
 const mongoose = require('mongoose')
 const mqttClient = require('./MqttClient')
+const broker = require('./broker')
+const uri = "mongodb+srv://hoan999:123hoan123@cluster0.px8as.mongodb.net/testdb?retryWrites=true&w=majority"
+//const uri = "mongodb://127.0.0.1:27017/testdb"
+//docker
+//const uri = "mongodb://host.docker.internal:27017/testdb"
 
-// const uri = "mongodb+srv://hoan999:123hoan123@cluster0.px8as.mongodb.net/testdb?retryWrites=true&w=majority"
-const uri = "mongodb://127.0.0.1:27017/testdb"
 async function connect(app){
     try{
+        broker.setup()
         await mongoose.connect(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
@@ -20,7 +24,5 @@ async function connect(app){
         console.log('Database connection error!! ' + error)
     }
 }
-
-// mqttBroker.setup(mqttClient)
 
 module.exports = {connect}

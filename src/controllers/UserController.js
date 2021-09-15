@@ -4,14 +4,14 @@ class UserController {
 
 
     login(req, res, next){
-        const {username, password} = req.body
+        const {username, hashPassword} = req.body
         User.findOne({username: username})
             .then(user => {
                 if(!user){
                     res.json({code: '404', message: 'User is not exist'})
                     return
                 } 
-                if(user.hashPassword === password){
+                if(user.hashPassword === hashPassword){
                     const token = jwt.sign({username: user.username}, 'secret')
                     res.json({code : '200', token: token})
                 } else {

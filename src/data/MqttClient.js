@@ -2,6 +2,8 @@ const mqtt = require('mqtt')
 const Sensor = require('./models/Sensor')
 // var mqttClient = mqttClient = mqtt.connect('mqtt://broker.emqx.io', {port: 1883})
 var mqttClient = mqtt.connect('mqtt://localhost', {port: 1883})
+//docker
+// var mqttClient = mqtt.connect('mqtt://host.docker.internal', {port: 1883})
 const sensorTopic = 'iot20201/group2/sensors'
 const deviceTopic = 'iot20201/group2/devices'
 
