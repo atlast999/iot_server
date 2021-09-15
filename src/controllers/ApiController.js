@@ -3,7 +3,7 @@ const mqttClient = require('../data/MqttClient')
 class ApiController {
 
     //GET sensor values
-    sensorValues(res, next){
+    sensorValues(req, res, next){
         Sensor.find().limit(20).sort({ _id: -1 })
         .then(sensors => {
             res.json(sensors)
