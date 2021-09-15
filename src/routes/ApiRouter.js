@@ -29,12 +29,12 @@ const fileUpload = multer({
 })
 
 //GET all users
-router.get('/all_users', apiController.allUsers)
+// router.get('/all_users', apiController.allUsers)
 
-router.post('/upload', fileUpload.single('file'), apiController.upload)
+// router.post('/upload', fileUpload.single('file'), apiController.upload)
 
-router.post('/recognite', fileUpload.single('file'), apiController.recognise)
+// router.post('/recognite', fileUpload.single('file'), apiController.recognise)
 
-router.post('/delete', apiController.delete)
+// router.post('/delete', apiController.delete)
 
 module.exports = router
