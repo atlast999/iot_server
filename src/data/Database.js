@@ -25,4 +25,6 @@ async function connect(app){
     }
 }
 
+// mqttBroker.setup(mqttClient)
+
 module.exports = {connect}
