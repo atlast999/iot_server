@@ -19,7 +19,7 @@ class ApiController {
     }
 
     //GET clear sensors data
-    clearData(res){
+    clearData(req, res){
         Sensor.deleteMany({__v : 0})
         .then(n => {
             res.json({res : n})

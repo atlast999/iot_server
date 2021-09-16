@@ -1,7 +1,7 @@
 <!DOCTYPE html>
  <html>
   <head>
-    <meta http-equiv="refresh" content="6">
+    {{!-- <meta http-equiv="refresh" content="6"> --}}
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -21,7 +21,7 @@
         var data = google.visualization.arrayToDataTable(realData);
 
         var options = {
-          title: 'Temperatu and Humidity',
+          title: 'Temperature and Humidity',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
